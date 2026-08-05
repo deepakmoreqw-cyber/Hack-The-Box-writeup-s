@@ -1,19 +1,11 @@
 Meow — Very Easy
 
-Summary:
-This box was not very hard we ping it then we use Nmap for scan and telnet for connection it is like most basic to understand....
-it is one of the first box so it's main use is to understand the VPN we use to connect to target machine
+Summary: Meow is a very easy HTB machine and a good starting point for understanding how to connect to a target over the HTB VPN. The box requires only basic reconnaissance and a telnet connection to gain access.
 
-Enumeration:
-Upon Scan using Nmap we discovered that port 23/tcp is using telnet services 
+Enumeration: After confirming the host was up with ping, I ran an Nmap scan (nmap -sV -p- <IP>) which revealed port 23/tcp open, running the Telnet service.
 
-Foothold:
-I tried different login methods and got in just as with root and no password needed
+Foothold: I connected via telnet <IP> and attempted a login as root with no password — this succeeded immediately, indicating the box allows unauthenticated root access over Telnet.
 
+Flags: Using ls to enumerate the filesystem, I located and read the flag with cat <path>.
 
-Flags:
-Hence after performing ls operations and searcing all files we find the flag 
-/cat
-
-What I Learned:
-we can use ping to see if machine is up and scan it using the Nmap to map wht services are being used by the system and tried logging in with telnet and got in easily with root and no password
+What I Learned: How to verify a host is reachable with ping, perform basic service enumeration with Nmap, and connect via Telnet. This box mainly served to confirm my VPN connection to the HTB network was working correctly.
