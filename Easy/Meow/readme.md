@@ -8,4 +8,4 @@ Foothold: I connected via telnet <IP> and attempted a login as root with no pass
 
 Flags: Using ls to enumerate the filesystem, I located and read the flag with cat <path>.
 
-What I Learned: How to verify a host is reachable with ping, perform basic service enumeration with Nmap, and connect via Telnet. This box mainly served to confirm my VPN connection to the HTB network was working correctly.
+What I Learned: How to verify a host is reachable with ping, perform basic service enumeration with Nmap, and connect via Telnet. This box mainly served to confirm my VPN connection to the HTB network was working correctly..
