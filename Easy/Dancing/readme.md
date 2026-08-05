@@ -1,23 +1,16 @@
 Dancing — Very Easy
 
-Summary
-We learn about a SMB (Server Message Block) protocol which allows file sharing in a network we use -l for getting list of available smb share we get in in one on them without password easily.
+Summary: Dancing introduces SMB (Server Message Block), a protocol used for file sharing on a network. Using smbclient -L, we list the available shares on the target and find one accessible without a password.
 
-Enumeration
-It says to find service running on the port 445 so instead of full scan i do following command.
+Enumeration: The task pointed to SMB, which runs on port 445, so instead of a full scan I ran a targeted one:
+nmap -p 445 <ip_address>
+Result: port 445 open, running microsoft-ds.
 
-nmap -p 445 [ip_address]
+Foothold: I used smbclient -L \\<ip_address> to list the available SMB shares and attempted anonymous login on each. One share, WorkShares, allowed access without credentials. To connect to it directly: smbclient \\<ip_address>\WorkShares -N (the -N flag skips the password prompt).
 
-                 service
-port 445 open, microsoft-ds
+Flags: Once connected, I used ls to list available files, then browsed through the directories and found the flag at dancing/flag.txt.
 
-Foothold
-I used basic smbclient -L \\[ip_Address] to get list of available shares on our machine we attempt anonymous login in all of and found (WorkShares) which allows us access without credentials.
-
-To actually connect to a share without a password, it's  smbclient \\[ip_address]\\sharename -N (the -N flag means "no password prompt"). 
-
-Flags
-After i get in with a SMB list withot password i simply used "ls" to see files available and at last after browsing through files and folders i got dancing/flag.txt 
+What I Learned: SMB is used for sharing files/printers on a network and typically runs on port 445. Shares can sometimes be listed and accessed anonymously if misconfigured, which is a common initial foothold on easy boxes.
 
 flag.txt- location
 "dancing/workshare/flag.txt."
